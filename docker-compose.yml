@@ -1,0 +1,18 @@
+mongodb-data:
+  image: busybox
+  container_name: mongodb-data 
+  volumes:
+      - /data/db 
+
+mongodb:
+  image: mongo
+  container_name: mongodb
+  hostname: mongodb
+  volumes_from:
+      - mongodb-data
+  restart: always
+  ports:
+      - "27017:27017"
+  command: mongod --storageEngine=wiredTiger --notablescan --journalCommitInterval=300 --directoryperdb 
+
+
