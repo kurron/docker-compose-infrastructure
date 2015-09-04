@@ -69,3 +69,22 @@ redis:
   restart: always
   ports:
       - "6379:6379"
+
+postgresql-data:
+  image: busybox
+  container_name: postgresql-data
+  volumes:
+      - /var/lib/postgresql/data 
+
+postgresql:
+  image: postgres
+  container_name: postgresql
+  hostname: postgresql
+  volumes_from:
+      - postgresql-data
+  restart: always
+  ports:
+      - "5432:5432"
+  environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
