@@ -36,3 +36,21 @@ mysql:
       MYSQL_USER: mysql
       MYSQL_PASSWORD: mysql
       MYSQL_DATABASE: sushe
+
+rabbitmq-data:
+  image: busybox
+  container_name: rabbitmq-data 
+  volumes:
+      - /var/lib/rabbitmq 
+
+rabbitmq:
+  image: rabbitmq:management
+  container_name: rabbitmq
+  hostname: rabbitmq
+  volumes_from:
+      - rabbitmq-data
+  restart: always
+  ports:
+      - "5672:5672"
+      - "15672:15672"
+
