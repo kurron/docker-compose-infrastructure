@@ -54,3 +54,18 @@ rabbitmq:
       - "5672:5672"
       - "15672:15672"
 
+redis-data:
+  image: busybox
+  container_name: redis-data
+  volumes:
+      - /data
+
+redis:
+  image: redis 
+  container_name: redis
+  hostname: redis
+  volumes_from:
+      - redis-data
+  restart: always
+  ports:
+      - "6379:6379"
