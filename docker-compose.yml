@@ -15,4 +15,3 @@ mongodb:
       - "27017:27017"
   command: mongod --storageEngine=wiredTiger --notablescan --journalCommitInterval=300 --directoryperdb 
 
-
